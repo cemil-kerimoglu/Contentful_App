@@ -8,3 +8,15 @@ https://huggingface.co/spaces/dalle-mini/dalle-mini
 
 trello board:
 https://trello.com/invite/wsb114/f991620b147f8ef08c83fd5461d59ba0
+
+
+properties for each blog post:
+-Title
+-Author
+-Date
+-Content (text)
+-Picture
+-Categories
+-uid
+-comments?
+....
