@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 const contentful = require('contentful');
 
 function App() {
-
   /*
   const [article, setArticle] = useState()
 
@@ -12,13 +11,7 @@ function App() {
     const { REACT_APP_SPACE_ID, REACT_APP_ACCESS_TOKEN } = process.env;
   }, [])
   */
-  
-
   const { REACT_APP_SPACE_ID, REACT_APP_ACCESS_TOKEN } = process.env;
-
-
-
-
   var client = contentful.createClient({
     space: `${REACT_APP_SPACE_ID}`,
     accessToken: `${REACT_APP_ACCESS_TOKEN}`,
@@ -26,10 +19,10 @@ function App() {
 
   client.getEntry('5HglAXgjMJTSk62cHJKZVE').then(function (entry) {
     // logs the entry metadata
-    console.log(entry.sys);
-  
+    console.log(entry.fields.title);
+    console.log(entry.fields);
     // logs the field with ID title
-    console.log(entry.fields.productName);
+    // console.log(entry.fields.productName);
   });
 
 
