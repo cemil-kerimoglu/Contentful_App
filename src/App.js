@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import MainPage from "./Pages/main/mainPage";
+
+const contentful = require("contentful");
+const { REACT_APP_SPACE_ID, REACT_APP_ACCESS_TOKEN } = process.env;
+export const client = contentful.createClient({
+  space: `${REACT_APP_SPACE_ID}`,
+  accessToken: `${REACT_APP_ACCESS_TOKEN}`,
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MainPage />
     </div>
   );
 }
-
 export default App;
