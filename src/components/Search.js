@@ -30,7 +30,7 @@ const Search = ({ articles }) => {
       // console.log(articles[5].fields.author);
       console.log(author);
 
-      let articlesToShow = articles.filter(article => article.fields.author === author);
+      let articlesToShow = articles.filter(article => article.fields.author.toLowerCase().includes(author.toLowerCase()));
       console.log(articlesToShow);
 
       return (
@@ -71,7 +71,11 @@ const Search = ({ articles }) => {
           </div>
 
           <div>
-          
+            <ul>
+              {articlesToShow.map(article => {
+                return <li>{article.fields.title} {"by"} {article.fields.author} </li>
+              })}
+            </ul>
           </div>
 
         </div>
