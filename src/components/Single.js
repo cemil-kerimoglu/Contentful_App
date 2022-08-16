@@ -21,15 +21,27 @@ function Single({ articles }) {
         </strong>{" "}
         published on {article?.publishDate}
       </p>
-      {`https:${article?.mainPicture?.fields.file.url}`}
+      Categories for this article:
+      {article?.categories?.map((c, i) => (
+        <span key={i}> {c} </span>
+      ))}
+      <hr />
       <img
         src={`https:${article?.mainPicture?.fields.file.url}`}
         alt="no pic 4 u"
       />
       <p>{article?.mainPicture?.fields.description}</p>
+      <hr />
       <p> Text:</p>
       {article?.content?.content?.map((c, i) => (
-        <div key={i}> {c.content[0].value} </div>
+        <div key={i}>
+          {" "}
+          NodeType ={c.nodeType}
+          {c.nodeType === "heading-2" ? <h2>{c.content[0].value}</h2> : ""}
+          {c.content?.map((e, i) => (
+            <p key={i}> {e.value} </p>
+          ))}{" "}
+        </div>
       ))}
       <hr />
     </>

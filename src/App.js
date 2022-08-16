@@ -7,6 +7,7 @@ import { ClockLoader, BarLoader } from "react-spinners";
 import Single from "./components/Single.js";
 import AllPosts from "./components/AllPosts.js";
 import ByAuthor from "./components/ByAuthor.js";
+import Search from "./components/Search.js";
 
 const { REACT_APP_CONTENTFUL_API_KEY, REACT_APP_CONTENTFUL_SPACE_ID } =
   process.env;
@@ -104,30 +105,17 @@ function App() {
         />
         <Route
           path="/byAuthor"
-          element={<ByAuthor articles={data?.allEntries} />}
+          element={<Search articles={data?.allEntries} />}
         />
         <Route
           path="/byAuthor/:aut"
           element={<ByAuthor articles={data?.allEntries} />}
         />
-        <Route path="/byCategory" element={<AllPosts />} />
+        <Route
+          path="/byCategory"
+          element={<Search articles={data?.allEntries} />}
+        />
       </Routes>
-      <p> Hello there, contentful </p>{" "}
-      <p> api key: {REACT_APP_CONTENTFUL_API_KEY} </p>{" "}
-      <p> space id: {REACT_APP_CONTENTFUL_SPACE_ID} </p>{" "}
-      <p>
-        {" "}
-        "{data?.singleEntry?.title}", written by{" "}
-        <strong>{data?.singleEntry?.author}</strong> published on{" "}
-        {data?.singleEntry?.publishDate}
-      </p>
-      {`https:${data?.singleEntry?.mainPicture?.fields.file.url}`}
-      <img
-        src={`https:${data?.singleEntry?.mainPicture?.fields.file.url}`}
-        alt="no pic 4 u"
-      />
-      <p>{data?.singleEntry?.mainPicture?.fields.description}</p>
-      <p> Text:"{data?.singleEntry?.content?.content[0].content[0].value}" </p>
       <hr />
     </div>
   );
