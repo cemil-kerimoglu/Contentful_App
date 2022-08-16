@@ -30,7 +30,7 @@ const Search = ({ articles }) => {
       // console.log(articles[5].fields.author);
       console.log(author);
 
-      let articlesToShow = articles.filter(article => article.fields.author.toLowerCase().includes(author.toLowerCase()));
+      let articlesToShow = articles.filter(article => article.fields.author?.toLowerCase().includes(author?.toLowerCase()));
       console.log(articlesToShow);
 
       return (
