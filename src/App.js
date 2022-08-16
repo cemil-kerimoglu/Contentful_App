@@ -1,47 +1,45 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from "react";
+import Search from './components/Search.js';
 const contentful = require('contentful');
 
-function App() {
-  /*
-  const [article, setArticle] = useState()
 
-  useEffect( () => {
-    const { REACT_APP_SPACE_ID, REACT_APP_ACCESS_TOKEN } = process.env;
-  }, [])
-  */
+function App() {
+
   const { REACT_APP_SPACE_ID, REACT_APP_ACCESS_TOKEN } = process.env;
   var client = contentful.createClient({
     space: `${REACT_APP_SPACE_ID}`,
     accessToken: `${REACT_APP_ACCESS_TOKEN}`,
   });
 
+  /*
   client.getEntry('5HglAXgjMJTSk62cHJKZVE').then(function (entry) {
-    // logs the entry metadata
     console.log(entry.fields.title);
     console.log(entry.fields);
-    // logs the field with ID title
-    // console.log(entry.fields.productName);
   });
 
+  client.getEntries().then(function (entries) {
+    console.log(entries);
+    console.log(entries.items[1].fields.mainPicture.fields.file.url);
+  });
+  */
+
+  const [allArticles, setAllArticles] = useState([]);
+
+  useEffect( () => {
+    const fetchingArticles = async () => {
+      const entries = await client.getEntries();
+      // console.log(entries);
+      // console.log(entries.items);
+      setAllArticles(entries.items);
+    }
+    fetchingArticles();
+  }, [])
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Search articles={allArticles} />
     </div>
   );
 }
