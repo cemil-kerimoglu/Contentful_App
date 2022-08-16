@@ -1,3 +1,12 @@
+- Create your content on Contentful
+- Use your React App to display the content coming from Contentful
+For the following functionalities we will use React Router 🙂
+1- Display all the articles
+2- Display one article 
+3- Display all article published by one author
+4- Display all articles about a certain topic/category
+5- Deploy your website on one of the following hosting platforms
+
 free ai content creator (text):
 https://www.frase.io/tools/ai-content-generator/
 https://rytr.me/ (needs account, free)
@@ -8,6 +17,12 @@ https://huggingface.co/spaces/dalle-mini/dalle-mini
 
 trello board:
 https://trello.com/invite/wsb114/f991620b147f8ef08c83fd5461d59ba0
+
+making ERD diagrams (without sign up):
+https://app.diagrams.net/
+https://cloud.smartdraw.com/
+https://dbdiagram.io/d
+
 
 
 properties for each blog post:
@@ -20,3 +35,20 @@ properties for each blog post:
 -uid
 -comments?
 ....
+
+
+var client = contentful.createClient({
+  space: '<space_id>',
+  accessToken: '<access_token>',
+});
+Claudia Benedetti
+4:21 PM
+client.getEntries().then(function (entries) {
+  // log the title for all the entries that have it
+  entries.items.forEach(function (entry) {
+    if (entry.fields.productName) {
+      console.log(entry.fields.productName);
+    }
+  });
+});
+
