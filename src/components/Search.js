@@ -28,18 +28,19 @@ const Search = ({ articles }) => {
     text.value = "";
   };
 
-  console.log(articles);
+  console.log("all articles", articles);
   // console.log(articles[5].fields.author);
-  console.log(author);
 
+  console.log("selected author", author);
+  
   let articlesToShowByAuthor = articles.filter((article) =>
-    article.fields.author?.toLowerCase().includes(author?.toLowerCase())
-  );
+      article.fields.author?.toLowerCase().includes(author?.toLowerCase())
+    );
   console.log("articles by author", articlesToShowByAuthor);
-
+  
   let articlesToShowByCategory = articles.filter((article) =>
-    article.fields.category?.includes(category)
-  );
+      article.fields.categories?.includes(category)
+    );
   console.log("articles by category", articlesToShowByCategory);
 
   return (
