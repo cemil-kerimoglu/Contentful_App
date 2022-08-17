@@ -28,27 +28,6 @@ function App() {
   };
   console.log("this was in local storage:", data);
 
-  function fetchSingleEntry(client, id) {
-    console.log("fetching one....");
-    setData((prev) => setData({ ...prev, isLoading: true }));
-    client
-      .getEntry(id)
-      .then(function (entry) {
-        console.log("fetching single:", entry.fields);
-        setData((prev) =>
-          setData({
-            ...prev,
-            singleEntry: entry.fields,
-            isLoading: false,
-            author: "cemil",
-          })
-        );
-        console.log("local storing single:", entry.fields);
-        console.log("our state is now:", data);
-        localStorage.setItem("blogData", JSON.stringify(data));
-      })
-      .catch((e) => console.log("fetching error:", e.message));
-  }
   function fetchAllEntries(client) {
     console.log("fetching all....");
     setData((prev) => setData({ ...prev, isLoading: true }));
@@ -79,40 +58,21 @@ function App() {
   */}
       <nav>
         <span>
-          <NavLink to="/">Home</NavLink>
-        </span>
-        |
-        <span>
           <NavLink to="/all">All blogposts</NavLink>
-        </span>
-        |
+        </span>{" "}
+        |{" "}
         <span>
-          <NavLink to="/byAuthor">All posts by an author</NavLink>
-        </span>
-        |
-        <span>
-          <NavLink to="/byCategory">All posts in a category</NavLink>
+          <NavLink to="/search">Search by author or category</NavLink>
         </span>
       </nav>
       <Routes>
-        {/*}
-        <Route path="/" element={<App />} />
-      */}
         <Route path="/all" element={<AllPosts articles={data?.allEntries} />} />
         <Route
           path="/all/:id"
           element={<Single articles={data?.allEntries} />}
         />
         <Route
-          path="/byAuthor"
-          element={<Search articles={data?.allEntries} />}
-        />
-        <Route
-          path="/byAuthor/:aut"
-          element={<ByAuthor articles={data?.allEntries} />}
-        />
-        <Route
-          path="/byCategory"
+          path="/search"
           element={<Search articles={data?.allEntries} />}
         />
       </Routes>

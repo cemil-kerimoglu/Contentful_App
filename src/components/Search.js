@@ -10,6 +10,8 @@ const Search = ({ articles }) => {
   const [author, setAuthor] = useState();
   const [category, setCategory] = useState();
 
+  console.log("author:", author);
+  console.log("category:", category);
   const submitHandler1 = (e) => {
     e.preventDefault();
     const text = document.getElementById("search-form1");
@@ -28,6 +30,7 @@ const Search = ({ articles }) => {
 
   console.log("all articles", articles);
   // console.log(articles[5].fields.author);
+
   console.log("selected author", author);
   
   let articlesToShowByAuthor = articles.filter((article) =>
@@ -39,7 +42,6 @@ const Search = ({ articles }) => {
       article.fields.categories?.includes(category)
     );
   console.log("articles by category", articlesToShowByCategory);
-  
 
   return (
     <div className="App">
@@ -83,9 +85,7 @@ const Search = ({ articles }) => {
                   {article.fields.title}
                 </NavLink>
                 {"by"}
-                <NavLink to={`/byAuthor/${article.fields.author}`}>
-                  {article.fields.author}
-                </NavLink>{" "}
+                {article.fields.author}
               </li>
             );
           })}
@@ -98,9 +98,7 @@ const Search = ({ articles }) => {
                   {article.fields.title}
                 </NavLink>
                 {"by"}
-                <NavLink to={`/byAuthor/${article.fields.author}`}>
-                  {article.fields.author}
-                </NavLink>{" "}
+                {article.fields.author}
               </li>
             );
           })}
