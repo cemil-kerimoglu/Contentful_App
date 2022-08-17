@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useParams, NavLink } from "react-router-dom";
+import RenderRTF from "./RenderRTF.js";
 
 function Single({ articles }) {
   const nav = useNavigate();
@@ -12,8 +13,7 @@ function Single({ articles }) {
     <>
       <button onClick={() => nav("/")}>Back to home</button>
       <p>
-        Article ID = "{id}"
-        <br />"{article?.title}", written by
+        "{article?.title}", written by{" "}
         <strong>
           <NavLink to={`/byAuthor/${article?.author}`}>
             {article?.author}
@@ -32,15 +32,9 @@ function Single({ articles }) {
       />
       <p>{article?.mainPicture?.fields.description}</p>
       <hr />
-      <p> Text:</p>
       {article?.content?.content?.map((c, i) => (
         <div key={i}>
-          {" "}
-          NodeType ={c.nodeType}
-          {c.nodeType === "heading-2" ? <h2>{c.content[0].value}</h2> : ""}
-          {c.content?.map((e, i) => (
-            <p key={i}> {e.value} </p>
-          ))}{" "}
+          <RenderRTF obj={c} />
         </div>
       ))}
       <hr />

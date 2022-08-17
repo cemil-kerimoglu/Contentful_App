@@ -10,6 +10,8 @@ const Search = ({ articles }) => {
   const [author, setAuthor] = useState();
   const [category, setCategory] = useState();
 
+  console.log("author:", author);
+  console.log("category:", category);
   const submitHandler1 = (e) => {
     e.preventDefault();
     const text = document.getElementById("search-form1");
@@ -30,10 +32,15 @@ const Search = ({ articles }) => {
   // console.log(articles[5].fields.author);
   console.log(author);
 
-  let articlesToShow = articles.filter((article) =>
+  let articlesToShowByAuthor = articles.filter((article) =>
     article.fields.author?.toLowerCase().includes(author?.toLowerCase())
   );
-  console.log(articlesToShow);
+  console.log("articles by author", articlesToShowByAuthor);
+
+  let articlesToShowByCategory = articles.filter((article) =>
+    article.fields.category?.includes(category)
+  );
+  console.log("articles by category", articlesToShowByCategory);
 
   return (
     <div className="App">
@@ -70,13 +77,27 @@ const Search = ({ articles }) => {
 
       <div>
         <ul>
-          {articlesToShow.map((article, i) => {
+          {articlesToShowByAuthor.map((article, i) => {
             return (
               <li key={i}>
-                {article.fields.title} {"by"}
-                <NavLink to={`/byAuthor/${article.fields.author}`}>
-                  {article.fields.author}
-                </NavLink>{" "}
+                <NavLink to={`/all/${article.sys.id}`}>
+                  {article.fields.title}
+                </NavLink>
+                {"by"}
+                {article.fields.author}
+              </li>
+            );
+          })}
+        </ul>
+        <ul>
+          {articlesToShowByCategory.map((article, i) => {
+            return (
+              <li key={i}>
+                <NavLink to={`/all/${article.sys.id}`}>
+                  {article.fields.title}
+                </NavLink>
+                {"by"}
+                {article.fields.author}
               </li>
             );
           })}

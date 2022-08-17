@@ -10,15 +10,14 @@ function AllPosts({ articles }) {
 
   return (
     <>
-      Well what the heck ?
       <button onClick={() => nav("/")}>Back to home </button>
-      <p> Aaaaalllll the entries : </p>
+      <p> Every single one of the entries are found right here: </p>
       {articles?.map((e, i) => {
         return (
           <div key={i}>
             <NavLink to={`/all/${e.sys.id}`}> {e.fields.title} </NavLink>
             by{" "}
-            <NavLink to={`/byAuthor/${e.fields.author}`}>
+            <NavLink to={`/searchAut/${e.fields.author}`}>
               {" "}
               {e.fields.author}{" "}
             </NavLink>
